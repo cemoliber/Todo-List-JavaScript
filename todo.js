@@ -16,11 +16,34 @@ function addTodo(e){
 
     const newTodo = todoInput.value.trim();
 
-    addTodoUI(newTodo);
+    if(newTodo === ""){
+        showAlert("danger","Please type a Todo!");
+        /*
+        <div class="alert alert-danger" role="alert">
+                        This is a danger alert—check it out!
+                      </div>
+                    <hr>*/
+    }else{
+        addTodoUI(newTodo);
+        showAlert("success","Todo added successfuly");
+    } 
 
     e.preventDefault();
 }
 
+function showAlert(type,message){
+    const alert = document.createElement("div");
+
+    alert.className = `alert alert-${type}`
+    alert.textContent = message;
+    firstCardBody.appendChild(alert);
+
+    //setTimeout
+    setTimeout(function(){
+        alert.remove();
+    },1500);
+
+}
 function addTodoUI(newTodo){
     //Creating list item
     const listItem = document.createElement("li");
@@ -39,4 +62,6 @@ function addTodoUI(newTodo){
 
     //Adding List Item to Todo List
     todoList.appendChild(listItem);
+
+    todoInput.value = "";
 }
