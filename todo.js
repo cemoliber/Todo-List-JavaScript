@@ -25,10 +25,30 @@ function addTodo(e){
                     <hr>*/
     }else{
         addTodoUI(newTodo);
+        addTodoToStorage(newTodo);
         showAlert("success","Todo added successfuly");
     } 
 
     e.preventDefault();
+}
+
+function getTodosFromStorage(){ //Gets Todos from Storage
+    let todos;
+
+    if(localStorage.getItem("todos") === null){
+        todos = [];
+    }else{
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    return todos;
+}
+
+function addTodoToStorage(newTodo){
+    let todos = getTodosFromStorage();
+
+    todos.push(newTodo);
+
+    localStorage.setItem("todos",JSON.stringify(todos));
 }
 
 function showAlert(type,message){
