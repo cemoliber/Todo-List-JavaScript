@@ -2,7 +2,7 @@ const form = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#todo");
 const todoList = document.querySelector(".list-group");
 const firstCardBody = document.querySelectorAll(".card-body")[0];
-const secondCardBody = document.querySelectorAll(".card-body");
+const secondCardBody = document.querySelectorAll(".card-body")[1];
 const filter = document.querySelector("filter");
 const clearButton = document.querySelector("#clear-todos");
 
@@ -11,6 +11,14 @@ eventListener();
 function eventListener(){//All event listeners
     form.addEventListener("submit",addTodo);
     document.addEventListener("DOMContentLoaded",loadAllTodosToUI);
+    secondCardBody.addEventListener("click",deleteTodo);
+}
+
+function deleteTodo(e){
+    if(e.target.className === "fa fa-remove"){
+        e.target.parentElement.parentElement.remove();
+        showAlert("success","Todo deleted successfully");
+    }
 }
 
 function loadAllTodosToUI(){
