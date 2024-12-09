@@ -13,6 +13,20 @@ function eventListener(){//All event listeners
     document.addEventListener("DOMContentLoaded",loadAllTodosToUI);
     secondCardBody.addEventListener("click",deleteTodo);
     filter.addEventListener("keyup",filterTodos);
+    clearButton.addEventListener("click",clearAllTodos);
+}
+
+function clearAllTodos(e){
+    
+    if(confirm("Do you want delete all todos?")){
+        //clear from UI
+        //todoList.innerHTML = ""; slowly method
+
+        while(todoList.firstElementChild != null){
+            todoList.removeChild(todoList.firstElementChild);
+        }
+        localStorage.removeItem("todos");
+    }
 }
 
 function filterTodos(e){
